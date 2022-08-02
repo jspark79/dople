@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "579891138775",
+    "project_id": "dople-2e5fe",
+    "storage_bucket": "dople-2e5fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579891138775:android:9d2931d1817bcac7eee092",
+        "android_client_info": {
+          "package_name": "com.dople"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579891138775-069bjo09170g3oassi95e919p9g71us9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dople",
+            "certificate_hash": "6d9bf00a345c5e0ddc64f8f1378b861459d1660e"
+          }
+        },
+        {
+          "client_id": "579891138775-i021kjb9pj6e0i2tpk14phfo8unmllp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGd22KFeqv_J_vvWWdk-PvQf4FXUu2o4Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579891138775-i021kjb9pj6e0i2tpk14phfo8unmllp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

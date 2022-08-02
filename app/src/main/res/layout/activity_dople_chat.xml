@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e1e1e1"
+    tools:context=".activity.DopleChatActivity">
+
+    <RelativeLayout
+        android:id="@+id/dople_chat_top"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/purple_200">
+
+        <ImageButton
+            android:id="@+id/dople_chat_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="김도플"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/dople_chat_real_top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@id/dople_chat_top" />
+
+    <ScrollView
+        android:id="@+id/dople_chat_scroll"
+        android:layout_width="match_parent"
+        android:layout_alignTop="@id/dople_chat_real_top"
+        android:layout_alignBottom="@id/dople_chat_real_bottom"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/dople_chat_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+<!--    android:scrollbarFadeDuration="0"-->
+<!--    android:scrollbarSize="3.5dp"-->
+<!--    android:scrollbarStyle="insideOverlay"-->
+<!--    android:scrollbarThumbVertical="@android:color/darker_gray"-->
+
+    </ScrollView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dople_chat_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/dople_chat_real_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_alignTop="@id/dople_chat_bottom" />
+
+    <LinearLayout
+        android:id="@+id/dople_chat_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="false"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/dople_chat_inputtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:background="@null"
+            android:ems="10"
+            android:hint="메시지를 입력하세요"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp" />
+
+        <ImageView
+            android:id="@+id/dople_chat_send"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            app:srcCompat="@android:drawable/ic_menu_send" />
+    </LinearLayout>
+
+</RelativeLayout>
