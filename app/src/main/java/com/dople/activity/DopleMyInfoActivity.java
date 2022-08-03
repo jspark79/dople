@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.dople.R;
+import com.dople.util.Config;
+import com.dople.util.SimpleStore;
 
 public class DopleMyInfoActivity extends AppCompatActivity implements View.OnClickListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,11 @@ public class DopleMyInfoActivity extends AppCompatActivity implements View.OnCli
 
         ImageButton backBtn = (ImageButton) findViewById(R.id.dople_myinfo_back_btn);
 
+        TextView userName = (TextView) findViewById(R.id.dople_myinfo_user_name);
+        TextView userEmail = (TextView) findViewById(R.id.dople_myinfo_user_email);
+
+        userName.setText(SimpleStore.getString(this, Config.KICK_NAME));
+        userEmail.setText(SimpleStore.getString(this, Config.USER_EMAIL));
 
         backBtn.setColorFilter(Color.parseColor("#ffffff"));
         backBtn.setOnClickListener(this);

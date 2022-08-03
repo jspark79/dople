@@ -40,7 +40,6 @@
 
 
         <ImageView
-            android:id="@+id/imageView8"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="30dp"
@@ -48,21 +47,19 @@
             app:srcCompat="@drawable/_11_user" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/dople_myinfo_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="140dp"
             android:layout_marginTop="40dp"
-            android:text="도플이"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/dople_myinfo_user_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="140dp"
-            android:layout_marginTop="70dp"
-            android:text="sr6434@wizcore.co.kr" />
+            android:layout_marginTop="70dp" />
     </RelativeLayout>
 
     <LinearLayout

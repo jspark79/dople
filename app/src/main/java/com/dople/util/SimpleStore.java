@@ -4,9 +4,6 @@ package com.dople.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-
-//SimpleStore.saveString(this, Config.KEY_PASSWORD, "0000");
-
 public class SimpleStore {
     private 	static SharedPreferences m_Pref = null;
 

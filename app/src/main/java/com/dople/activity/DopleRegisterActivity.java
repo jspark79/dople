@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.dople.R;
+import com.dople.util.Config;
 import com.dople.util.SimpleStore;
 
 public class DopleRegisterActivity extends AppCompatActivity implements View.OnClickListener{
@@ -32,7 +33,7 @@ public class DopleRegisterActivity extends AppCompatActivity implements View.OnC
         ((Button)findViewById(R.id.dolpe_regiter_confirm_btn)).setOnClickListener(this);
 
         TextView kickname = (TextView) findViewById(R.id.dople_login_register_kickname);
-        kickname.setText(SimpleStore.getString(this, "kickname"));
+        kickname.setText(SimpleStore.getString(this, Config.KICK_NAME));
 
         Spinner spinner_sex = (Spinner) findViewById(R.id.dolpe_register_sex);
         Spinner spinner_age = (Spinner) findViewById(R.id.dolpe_register_age);
