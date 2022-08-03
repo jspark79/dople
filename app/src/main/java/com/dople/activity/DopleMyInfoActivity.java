@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.dople.R;
 import com.dople.util.Config;
 import com.dople.util.SimpleStore;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DopleMyInfoActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
@@ -26,6 +27,8 @@ public class DopleMyInfoActivity extends AppCompatActivity implements View.OnCli
     private void initView() {
         ((RelativeLayout) findViewById(R.id.dolpe_myinfo_register)).setOnClickListener(this);
         ((RelativeLayout) findViewById(R.id.dolpe_myinfo_chat)).setOnClickListener(this);
+        ((RelativeLayout) findViewById(R.id.dolpe_myinfo_logout)).setOnClickListener(this);
+
 
         ImageButton backBtn = (ImageButton) findViewById(R.id.dople_myinfo_back_btn);
 
@@ -43,6 +46,13 @@ public class DopleMyInfoActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.dolpe_myinfo_logout:
+                FirebaseAuth.getInstance().signOut();
+                intent = new Intent(DopleMyInfoActivity.this, DopleMainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
             case R.id.dolpe_myinfo_chat:
                 intent = new Intent(DopleMyInfoActivity.this, DopleChatActivity.class);
                 startActivity(intent);

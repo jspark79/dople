@@ -34,6 +34,13 @@ public class DopleMainActivity extends AppCompatActivity implements View.OnClick
     private EditText mEmail, mPassword;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mEmail.setText("");
+        mPassword.setText("");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

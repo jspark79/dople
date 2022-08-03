@@ -71,9 +71,45 @@
         android:orientation="horizontal" />
 
     <RelativeLayout
+        android:id="@+id/dolpe_myinfo_update_profile"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/_27_id" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="70dp"
+            android:text="프로필"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:rotation="180"
+            app:srcCompat="?attr/homeAsUpIndicator" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#d3d3d3"
+        android:orientation="horizontal" />
+
+    <RelativeLayout
         android:id="@+id/dolpe_myinfo_register"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="60dp">
 
         <ImageView
             android:layout_width="30dp"
@@ -109,7 +145,7 @@
     <RelativeLayout
         android:id="@+id/dolpe_myinfo_chat"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="60dp">
 
         <ImageView
             android:layout_width="30dp"
@@ -144,7 +180,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="60dp">
 
         <ImageView
             android:layout_width="30dp"
@@ -178,8 +214,44 @@
         android:orientation="horizontal" />
 
     <RelativeLayout
+        android:id="@+id/dolpe_myinfo_logout"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/_41_turn_off" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="70dp"
+            android:text="로그아웃"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:rotation="180"
+            app:srcCompat="?attr/homeAsUpIndicator" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#d3d3d3"
+        android:orientation="horizontal" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
 
         <ImageView
             android:layout_width="30dp"
