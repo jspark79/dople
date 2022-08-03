@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.dople.R;
+import com.dople.util.Config;
 
 public class DopleSearchActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText mSearchText;
@@ -23,7 +24,7 @@ public class DopleSearchActivity extends AppCompatActivity implements View.OnCli
         initView();
 
         Intent intent = getIntent();
-        mSearchText.setText(intent.getStringExtra("key"));
+        mSearchText.setText(intent.getStringExtra(Config.SEARCH_KEY));
     }
 
     private void initView() {

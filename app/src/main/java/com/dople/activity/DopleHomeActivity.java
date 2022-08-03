@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dople.R;
+import com.dople.util.Config;
 
 public class DopleHomeActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText mSearchText;
@@ -66,22 +67,7 @@ public class DopleHomeActivity extends AppCompatActivity implements View.OnClick
 
         mSearchText = (EditText) findViewById(R.id.dople_home_search_text);
 
-
         mTopBtnSwimming.setSelected(true);
-
-        mSearchText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                switch (keyCode) {
-                    case KeyEvent.KEYCODE_ENTER:
-                        Intent intent = new Intent(DopleHomeActivity.this, DopleSearchActivity.class);
-                        intent.putExtra("key", mSearchText.getText().toString());
-                        startActivity(intent);
-                        break;
-                }
-                return true;
-            }
-        });
     }
 
     @Override
@@ -115,7 +101,7 @@ public class DopleHomeActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.dople_home_search_btn:
                 intent = new Intent(DopleHomeActivity.this, DopleSearchActivity.class);
-                intent.putExtra("key", mSearchText.getText().toString());
+                intent.putExtra(Config.SEARCH_KEY, mSearchText.getText().toString());
                 startActivity(intent);
                 break;
         }
