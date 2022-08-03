@@ -67,6 +67,7 @@ public class DopleHomeActivity extends AppCompatActivity implements View.OnClick
         mSearchText = (EditText) findViewById(R.id.dople_home_search_text);
 
 
+        mTopBtnSwimming.setSelected(true);
 
         mSearchText.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -88,37 +89,25 @@ public class DopleHomeActivity extends AppCompatActivity implements View.OnClick
         Intent intent;
         switch (v.getId()) {
             case R.id.dople_home_tab_favorite:
-                setVisibleGone();
-                setVisibleFavorite();
-                setVisibleTab(0);
+                setDisplayLayout(0);
                 break;
             case R.id.dople_home_tab_recommended:
-                setVisibleGone();
-                mRecommended.setVisibility(View.VISIBLE);
-                setVisibleTab(1);
+                setDisplayLayout(1);
                 break;
             case R.id.dople_home_tab_good_review:
-                setVisibleGone();
-                mGoodReview.setVisibility(View.VISIBLE);
-                setVisibleTab(2);
+                setDisplayLayout(2);
                 break;
             case R.id.dople_home_top_swimming:
                 currentIndex = 0;
-                setVisibleGone();
-                mTopSwimming.setVisibility(View.VISIBLE);
-                setVisibleTab(0);
+                setDisplayLayout(0);
                 break;
             case R.id.dople_home_top_running:
                 currentIndex = 1;
-                setVisibleGone();
-                mTopRunning.setVisibility(View.VISIBLE);
-                setVisibleTab(0);
+                setDisplayLayout(0);
                 break;
             case R.id.dople_home_top_outdoor:
                 currentIndex = 2;
-                setVisibleGone();
-                mTopOutdoor.setVisibility(View.VISIBLE);
-                setVisibleTab(0);
+                setDisplayLayout(0);
                 break;
             case R.id.dople_home_user_btn:
                 intent = new Intent(DopleHomeActivity.this, DopleMyInfoActivity.class);
@@ -137,28 +126,49 @@ public class DopleHomeActivity extends AppCompatActivity implements View.OnClick
         mTabRecommended.setVisibility(View.GONE);
         mTabGooReview.setVisibility(View.GONE);
 
-        if (index == 0)
+        if (index == 0) {
             mTabFavorite.setVisibility(View.VISIBLE);
-        else if (index == 1)
+            setVisibleFavorite(currentIndex);
+        } else if (index == 1) {
             mTabRecommended.setVisibility(View.VISIBLE);
-        else
+            setVisibleFavorite(-1);
+        } else {
             mTabGooReview.setVisibility(View.VISIBLE);
+            setVisibleFavorite(-1);
+        }
     }
 
-    private void setVisibleFavorite() {
-        if (currentIndex == 0)
+    private void setVisibleFavorite(int index) {
+        mTopBtnOutdoor.setSelected(false);
+        mTopBtnSwimming.setSelected(false);
+        mTopBtnRunning.setSelected(false);
+
+        if (index == 0) {
             mTopSwimming.setVisibility(View.VISIBLE);
-        else if (currentIndex == 1)
+            mTopBtnSwimming.setSelected(true);
+        } else if (index == 1) {
             mTopRunning.setVisibility(View.VISIBLE);
-        else
+            mTopBtnRunning.setSelected(true);
+        } else if (index == 2){
             mTopOutdoor.setVisibility(View.VISIBLE);
+            mTopBtnOutdoor.setSelected(true);
+        }
     }
 
-    private void setVisibleGone() {
+    private void setDisplayLayout(int index) {
         mTopSwimming.setVisibility(View.GONE);
         mTopRunning.setVisibility(View.GONE);
         mTopOutdoor.setVisibility(View.GONE);
         mRecommended.setVisibility(View.GONE);
         mGoodReview.setVisibility(View.GONE);
+
+        if (index == 0) {
+        } else if (index == 1) {
+            mRecommended.setVisibility(View.VISIBLE);
+        } else {
+            mGoodReview.setVisibility(View.VISIBLE);
+        }
+
+        setVisibleTab(index);
     }
 }

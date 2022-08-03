@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ColoredButton" parent="Widget.AppCompat.Button.Colored">
+    <style name="ColoredButton">
         <item name="android:textColor">@color/btn_text_color</item>
     </style>
 </resources>
+
+<!--<style name="ColoredButton" parent="Widget.AppCompat.Button.Colored">-->
