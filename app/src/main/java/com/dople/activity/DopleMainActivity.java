@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,10 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.dople.R;
 import com.dople.util.Config;
 import com.dople.util.SimpleStore;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +29,8 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class DopleMainActivity extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth firebaseAuth;
@@ -116,7 +122,7 @@ public class DopleMainActivity extends AppCompatActivity implements View.OnClick
                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
-
+                                            downloadProfileImage();
                                         } else {
                                             Toast.makeText(DopleMainActivity.this,"email 확인 먼저" ,Toast.LENGTH_SHORT).show();
 
@@ -124,5 +130,24 @@ public class DopleMainActivity extends AppCompatActivity implements View.OnClick
                                     }
                             }
                         });
+    }
+
+    private void downloadProfileImage() {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storeRef = storage.getReference();
+        storeRef.child(Config.FIREBASE_PROFILE_IMAGE_FIR + SimpleStore.getString(this, Config.USER_EMAIL) + ".jpg")
+                .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.v("dople", "downloadProfileImage onSuccess : " +  uri.toString());
+                        SimpleStore.saveString(DopleMainActivity.this, Config.PROFILE_URI, uri.toString());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.v("dople", "downloadProfileImage onFailure : " +  e.toString());
+                        SimpleStore.saveString(DopleMainActivity.this, Config.PROFILE_URI, "");
+                    }
+                });
     }
 }

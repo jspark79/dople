@@ -38,13 +38,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/dople_myinfo_profile_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
-            app:srcCompat="@drawable/_11_user" />
+            android:background="@android:color/transparent"
+            app:civ_border_overlay="true"
+            app:civ_border_color="#000000"
+            android:src="@drawable/_11_user"
+            />
 
         <TextView
             android:id="@+id/dople_myinfo_user_name"
