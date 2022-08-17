@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.dople.R;
 import com.dople.util.Config;
 import com.dople.util.SimpleStore;
@@ -37,8 +43,14 @@ import java.io.InputStream;
 
 public class DopleMyInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView mProfileImage;
+    private TextView mUserName;
 
-    private static final int PICK_IMAGE = 1;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        downloadProfileImage();
+        mUserName.setText(SimpleStore.getString(this, Config.USER_NAME));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,18 +64,16 @@ public class DopleMyInfoActivity extends AppCompatActivity implements View.OnCli
         ((RelativeLayout) findViewById(R.id.dolpe_myinfo_register)).setOnClickListener(this);
         ((RelativeLayout) findViewById(R.id.dolpe_myinfo_chat)).setOnClickListener(this);
         ((RelativeLayout) findViewById(R.id.dolpe_myinfo_logout)).setOnClickListener(this);
+        ((RelativeLayout) findViewById(R.id.dolpe_myinfo_update_profile)).setOnClickListener(this);
 
         mProfileImage = (ImageView) findViewById(R.id.dople_myinfo_profile_image);
         mProfileImage.setOnClickListener(this);
 
         ImageButton backBtn = (ImageButton) findViewById(R.id.dople_myinfo_back_btn);
 
-        ((TextView) findViewById(R.id.dople_myinfo_user_name)).setText(SimpleStore.getString(this, Config.KICK_NAME));
+        mUserName = (TextView) findViewById(R.id.dople_myinfo_user_name);
+        mUserName.setText(SimpleStore.getString(this, Config.USER_NAME));
         ((TextView) findViewById(R.id.dople_myinfo_user_email)).setText(SimpleStore.getString(this, Config.USER_EMAIL));
-
-        String uri = SimpleStore.getString(DopleMyInfoActivity.this, Config.PROFILE_URI);
-        if (!uri.isEmpty())
-            Glide.with(this).load(uri).into(mProfileImage);
 
         backBtn.setColorFilter(Color.parseColor("#ffffff"));
         backBtn.setOnClickListener(this);
@@ -73,10 +83,9 @@ public class DopleMyInfoActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.dople_myinfo_profile_image:
-//                intent = new Intent(Intent.ACTION_GET_CONTENT);
-//                intent.setType("image/*");
-//                startActivityForResult(intent, PICK_IMAGE);
+            case R.id.dolpe_myinfo_update_profile:
+                intent = new Intent(DopleMyInfoActivity.this, DopleProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.dolpe_myinfo_logout:
                 FirebaseAuth.getInstance().signOut();
@@ -86,7 +95,7 @@ public class DopleMyInfoActivity extends AppCompatActivity implements View.OnCli
                 startActivity(intent);
                 break;
             case R.id.dolpe_myinfo_chat:
-                intent = new Intent(DopleMyInfoActivity.this, DopleChatActivity.class);
+                intent = new Intent(DopleMyInfoActivity.this, DopleChatListActivity.class);
                 startActivity(intent);
                 break;
             case R.id.dople_myinfo_back_btn:
@@ -99,61 +108,28 @@ public class DopleMyInfoActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if ((resultCode == RESULT_OK) && (requestCode == PICK_IMAGE)) {
-            try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                mProfileImage.setImageBitmap(selectedImage);
-                uploadImage(imageUri);
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-//                Toast.makeText(PostImage.this, "Something went wrong", Toast.LENGTH_LONG).show();
-            }
-
-        }
-    }
-
-    private void uploadImage(Uri imageUri) {
-        Log.v("dople", "uploadImage : " +  imageUri.toString());
-
+    private void downloadProfileImage() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference ref = storage.getReference();
+        StorageReference storeRef = storage.getReference();
+        storeRef.child(Config.FIREBASE_PROFILE_IMAGE_FIR + SimpleStore.getString(this, Config.USER_EMAIL) + ".jpg")
+                .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.v("dople", "downloadProfileImage onSuccess : " +  uri.toString());
+                        SimpleStore.saveString(DopleMyInfoActivity.this, Config.PROFILE_URI, uri.toString());
+//                        String uri = SimpleStore.getString(DopleMyInfoActivity.this, Config.PROFILE_URI);
 
-        String filename = SimpleStore.getString(this, Config.USER_EMAIL) + ".jpg";
-
-        StorageReference riversRef = ref.child(Config.FIREBASE_PROFILE_IMAGE_FIR + filename);
-        UploadTask task = riversRef.putFile(imageUri);
-
-
-        StorageReference delRef = ref.child(Config.FIREBASE_PROFILE_IMAGE_FIR + filename);
-        delRef.delete().addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.v("dople", "delRef onFailure : " +  e.toString());
-            }
-        }).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.v("dople", "delRef onSuccess");
-            }
-        });
-
-
-        task.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.v("dople", "onFailure : " +  e.toString());
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-            }
-        });
+                        if (!uri.toString().isEmpty())
+//            Glide.with(this).load(uri).into(mProfileImage);
+                            Glide.with(DopleMyInfoActivity.this).applyDefaultRequestOptions(new RequestOptions()
+                                    .placeholder(R.drawable._11_user).error(R.drawable._11_user)).load(uri.toString()).into(mProfileImage);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.v("dople", "downloadProfileImage onFailure : " +  e.toString());
+                        SimpleStore.saveString(DopleMyInfoActivity.this, Config.PROFILE_URI, "");
+                    }
+                });
     }
 }

@@ -88,8 +88,9 @@ public class DopleChatActivity extends AppCompatActivity implements View.OnClick
 
 
     private void initChatData() {
-        SimpleDateFormat ft = new SimpleDateFormat("MM-dd hh:mm");
+        SimpleDateFormat ft = new SimpleDateFormat("MM-dd HH:mm");
         Calendar tempCal = Calendar.getInstance();
+        tempCal.set(2022, 7, 17, 15, 44);
 
         DopleChatData chatData = new DopleChatData();
         tempCal.add(Calendar.MINUTE, -40);

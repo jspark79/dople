@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -57,23 +58,32 @@ public class DopleHomeActivity extends AppCompatActivity implements View.OnClick
         mTopBtnRunning.setOnClickListener(this);
         mTopBtnOutdoor.setOnClickListener(this);
 
+        ((TextView)findViewById(R.id.dople_home_exercise)).setOnClickListener(this);
+
         ((LinearLayout)findViewById(R.id.dople_home_tab_favorite)).setOnClickListener(this);
         ((LinearLayout)findViewById(R.id.dople_home_tab_recommended)).setOnClickListener(this);
         ((LinearLayout)findViewById(R.id.dople_home_tab_good_review)).setOnClickListener(this);
-
+        ((LinearLayout)findViewById(R.id.dople_home_runnning_item)).setOnClickListener(this);
 
         ImageView mSearchBtn = (ImageView) findViewById(R.id.dople_home_search_btn);
         mSearchBtn.setOnClickListener(this);
 
         mSearchText = (EditText) findViewById(R.id.dople_home_search_text);
-
-        mTopBtnSwimming.setSelected(true);
     }
 
     @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.dople_home_runnning_item:
+                intent = new Intent(DopleHomeActivity.this, DopleProgramActivity.class);
+                intent.putExtra("program", 2);
+                startActivity(intent);
+                break;
+            case R.id.dople_home_exercise:
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://dople.nexmoa.com:8443"));
+                startActivity(intent);
+                break;
             case R.id.dople_home_tab_favorite:
                 setDisplayLayout(0);
                 break;

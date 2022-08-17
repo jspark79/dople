@@ -117,6 +117,18 @@
                         android:scaleType="fitStart"
                         app:srcCompat="@drawable/dople_logo" />
 
+                    <TextView
+                        android:id="@+id/dople_home_exercise"
+                        style="@style/ColoredButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/home_btn_bg_selector"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="운동하기"/>
+
 
                 </LinearLayout>
 
@@ -573,6 +585,68 @@
                                     android:paddingStart="10dp"
                                     android:paddingEnd="10dp"
                                     android:text="#마라톤"
+                                    android:textColor="@color/purple_200" />
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/dople_home_runnning_item"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/home_seoul_running" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="서울, 성동구"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="매일 저녁 서울숲 한바퀴"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginEnd="3dp"
+                                    android:background="@drawable/outline_round_empty_textview"
+                                    android:gravity="center"
+                                    android:paddingStart="10dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="#러닝"
+                                    android:textColor="@color/purple_200" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginEnd="3dp"
+                                    android:background="@drawable/outline_round_empty_textview"
+                                    android:gravity="center"
+                                    android:paddingStart="10dp"
+                                    android:paddingEnd="10dp"
+                                    android:text="#달리기"
                                     android:textColor="@color/purple_200" />
 
 
@@ -1223,7 +1297,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="165dp"
-                    android:text="0"
+                    android:text="142"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -1273,7 +1347,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="165dp"
-                    android:text="0"
+                    android:text="37"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -1323,7 +1397,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="165dp"
-                    android:text="0"
+                    android:text="79"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />

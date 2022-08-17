@@ -115,9 +115,10 @@ public class DopleMainActivity extends AppCompatActivity implements View.OnClick
                                         Log.v("dople", "task. success()");
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                         if (user.isEmailVerified()) {
-                                            SimpleStore.saveString(DopleMainActivity.this, Config.KICK_NAME, user.getDisplayName());
+                                            SimpleStore.saveString(DopleMainActivity.this, Config.USER_NAME, user.getDisplayName());
                                             SimpleStore.saveString(DopleMainActivity.this, Config.USER_EMAIL, user.getEmail());
-//                                            SimpleStore.saveString(DopleMainActivity.this, Config.USER_NAME, user.getDisplayName());
+                                            SimpleStore.saveString(DopleMainActivity.this, Config.USER_PASSWORD, mPassword.getText().toString());
+                                            SimpleStore.saveString(DopleMainActivity.this, Config.USER_UID, user.getUid());
                                             Intent intent = new Intent(DopleMainActivity.this, DopleHomeActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

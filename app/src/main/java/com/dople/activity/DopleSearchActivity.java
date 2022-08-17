@@ -16,6 +16,8 @@ import com.dople.util.Config;
 public class DopleSearchActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText mSearchText;
 
+    private LinearLayout mSwimmingLayout, mRunningLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,15 @@ public class DopleSearchActivity extends AppCompatActivity implements View.OnCli
         initView();
 
         Intent intent = getIntent();
-        mSearchText.setText(intent.getStringExtra(Config.SEARCH_KEY));
+        String search_key = intent.getStringExtra(Config.SEARCH_KEY);
+        mSearchText.setText(search_key);
+        if (search_key.equals("수영")) {
+            mSwimmingLayout.setVisibility(View.VISIBLE);
+            mRunningLayout.setVisibility(View.GONE);
+        } else {
+            mSwimmingLayout.setVisibility(View.GONE);
+            mRunningLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initView() {
@@ -32,6 +42,9 @@ public class DopleSearchActivity extends AppCompatActivity implements View.OnCli
 
         ImageButton mBackBtn = (ImageButton) findViewById(R.id.dople_search_back_btn);
         mBackBtn.setOnClickListener(this);
+
+        mSwimmingLayout = (LinearLayout) findViewById(R.id.dople_search_swimming_layout);
+        mRunningLayout = (LinearLayout) findViewById(R.id.dople_search_running_layout);
 
         LinearLayout mProgram2 = (LinearLayout) findViewById(R.id.dople_search_program_2);
         mProgram2.setOnClickListener(this);

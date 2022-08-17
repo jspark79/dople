@@ -34,7 +34,7 @@
 
     </RelativeLayout>
 
-    <TextView
+    <EditText
         android:id="@+id/dople_login_register_kickname"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -42,14 +42,13 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/outline_login_edittext"
-        android:enabled="false"
         android:gravity="center_vertical"
         android:paddingStart="10dp"
-        android:text="sdfsdaf"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
+        android:id="@+id/dople_login_register_location"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
@@ -93,10 +92,10 @@
             android:background="@drawable/outline_login_edittext"/>
 
         <Spinner
-            android:id="@+id/dolpe_register_sex"
+            android:id="@+id/dolpe_register_gender"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:entries="@array/sex"/>
+            android:entries="@array/gender"/>
 
     </RelativeLayout>
 
